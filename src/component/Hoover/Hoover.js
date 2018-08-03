@@ -2,8 +2,18 @@ import React, { Component } from 'react';
 
 class Hoover extends Component {
 
+  // clean = () => {
+  //   if(this.grid[this.y][this.x] === 'D'){
+  //     this.dirtyHoovered += 1
+  //     this.grid[this.y][this.x] = ''
+  //   }else{
+  //     this.grid[this.y][this.x] = ''
+  //   }
+  // }
+
   rigth = () => {
-    if(this.props.updatedX < (this.props.sizeGrid - 1)){
+    if(this.props.updatedX < (this.props.sizeGridX - 1)){
+      this.props.clean
       this.props.incraseX()
     }
   }
@@ -13,7 +23,7 @@ class Hoover extends Component {
     }
   }
   up = () => {
-    if(this.props.updatedY < this.props.sizeGrid - 1){
+    if(this.props.updatedY < this.props.sizeGridY - 1){
       this.props.incraseY()
     }
   }
@@ -25,6 +35,11 @@ class Hoover extends Component {
   render() {
     return (
       <div>
+        <form onSubmit ={this.props.initialPosition}>
+          <input type='number' name='x' placeholder='X'></input>
+          <input type='number' name='y' placeholder='Y'></input>
+          <button>Initilal Hoover Position</button>
+        </form>
         <button onClick={this.left}>LEFT</button>
         <button onClick={this.up}>UP</button>
         <button onClick={this.down}>DOWN</button>

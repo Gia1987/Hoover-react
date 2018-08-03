@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './Grid.css';
 
 class Grid extends Component {
 
@@ -7,35 +6,47 @@ class Grid extends Component {
     let table = []
 
     // Outer loop to create parent
-    for (let i = 0; i < this.props.sizeGrid; i++) {
+    for (let i = 0; i < this.props.sizeGridY; i++) {
       let children = []
       //Inner loop to create children
-      for (let j = 0; j < this.props.sizeGrid; j++) {
-        children.push(<td key ={`${j}`}>
-          {(this.props.updatedX == j) && (this.props.updatedY == i ) ?
-          <img
-            src='https://target.scene7.com/is/image/Target/52731060_Alt01?wid=488&hei=488&fmt=pjpeg'
-            width="100" height="100"
-          />
-          :
-          <img
-            src='https://thumbs.dreamstime.com/t/slime-blot-isolated-white-background-green-vector-illustration-82581688.jpg'
-            width="100" height="100"
-            style={(this.props.dirtyX == j) && (this.props.dirtyY == i ) ? {visibility: 'visible'} : {visibility: 'hidden'}}
-          />
-          }
-          </td>)
+      for (let j = 0; j < this.props.sizeGridX; j++) {
+        children.push(
+          <td className={`${j}`}>
+            {this.hooverImg(j, i)}
+          </td>
+        )
       }
       //Create the parent and add the children
-      table.push(<tr key ={`${i}`}>{children}</tr>)
+      table.push(<tr id={`${i}`}>{children}</tr>)
     }
     return table.reverse()
+  }
+
+  // dirtyPatches = () => {
+  //   // if(( 0 === j) && ( 0 === i)) {
+  //     return <img
+  //       src='https://thumbs.dreamstime.com/t/slime-blot-isolated-white-background-green-vector-illustration-82581688.jpg'
+  //       width="70" height="70"/>
+  //   // }
+  // }
+  hooverImg = (j, i) => {
+    if((this.props.updatedX === j) && (this.props.updatedY === i ) ) {
+      // this.props.clean()
+      return <img
+        src='https://target.scene7.com/is/image/Target/52731060_Alt01?wid=488&hei=488&fmt=pjpeg'
+        width="70" height="70"/>
+    }
   }
 
   render() {
   return (
     <div>
-      <table>
+      <form onSubmit ={this.props.sizeGrid}>
+        <input type='number' name='GridX' placeholder='X'></input>
+        <input type='number' name='GridY' placeholder='Y'></input>
+        <button>Get Grid</button>
+      </form>
+      <table className='myTable'>
         <tbody>
           {this.createTable()}
         </tbody>
