@@ -23,7 +23,7 @@ I just managed to complete a few task like create a Grid and the possibility to 
 - npm start
 
 ### Other way to run the app
-The app also lives on Heroku at this link: https://tranquil-reef-30155.herokuapp.com/
+The app also lives on Heroku at this link: https://hoover-app.herokuapp.com/
 
 ### TODO
 - make user able to locate dirt patches.
