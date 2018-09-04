@@ -3,6 +3,7 @@ import './App.css';
 
 import Grid from './component/Grid/Grid.js'
 import Hoover from './component/Hoover/Hoover.js'
+import Dirty from './component/dirty/dirty.js'
 
 class App extends Component {
   constructor(props) {
@@ -13,6 +14,8 @@ class App extends Component {
         x: null,
         y: null,
       };
+      this.initialXYHandler = this.initialXYHandler.bind(this);
+      this.sizeGridXYHandler = this.sizeGridXYHandler.bind(this);
     }
 
 initialXYHandler = (event) => {
@@ -23,7 +26,6 @@ initialXYHandler = (event) => {
     x: parseInt(initialX),
     y: parseInt(initialY)
   });
-  console.log(this.state.x)
 }
 
 sizeGridXYHandler = (event) => {
@@ -34,7 +36,6 @@ sizeGridXYHandler = (event) => {
     GridX: parseInt(initialX),
     GridY: parseInt(initialY)
   });
-  console.log(this.state.GridX)
 }
 
 
@@ -75,6 +76,7 @@ sizeGridXYHandler = (event) => {
         <h1>Hoover</h1>
         <p>Position: {this.state.x}, {this.state.y}</p>
         <p>{this.state.sizeGridX}</p>
+        < Dirty />
         < Grid
           sizeGrid ={this.sizeGridXYHandler}
           sizeGridX = {this.state.GridX}
